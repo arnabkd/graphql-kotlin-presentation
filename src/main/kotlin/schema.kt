@@ -12,6 +12,10 @@ val schema = SchemaParser
       Charsets.UTF_8
     )
   )
+  .dictionary(mapOf(
+    "Dog" to Pet.Dog::class.java,
+    "Cat" to Pet.Cat::class.java
+  ))
   .resolvers(Query(), Mutation())
   .build()
   .makeExecutableSchema()
@@ -26,6 +30,13 @@ private class Query : GraphQLQueryResolver {
 private class Mutation : GraphQLMutationResolver {
   fun addFriend(firstFriendId: Int, secondFriendId: Int): Boolean {
     PeopleRepository.addFriendConnection(firstFriendId, secondFriendId)
+    return true
+  }
+
+  fun addPet(personId: Int, petId: Int): Boolean {
+    val owner = PeopleRepository.findById(personId)
+    val pet = PetRepository.findById(petId)
+    owner.addPet(pet.id)
     return true
   }
 }

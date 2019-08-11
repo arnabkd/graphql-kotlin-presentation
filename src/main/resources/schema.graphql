@@ -1,11 +1,28 @@
-type Interest {
+interface Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+}
 
+type Dog implements Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+  wagTail: String!
+}
+
+type Cat implements Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+  purr: String!
 }
 
 type Person {
   id: ID!
   name: String!
   friends: [Person!]!
+  pets: [Pet!]!
 }
 
 type Query {
@@ -15,4 +32,5 @@ type Query {
 
 type Mutation {
   addFriend(firstFriendId: ID!, secondFriendId: ID!): Boolean!
+  addPet(personId: ID!, petId: ID!): Boolean!
 }

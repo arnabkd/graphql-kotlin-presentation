@@ -1,9 +1,24 @@
 object PeopleRepository {
 
-  private var people = mutableListOf(
-    Person("Tom", emptyList(), 1),
-    Person("Jessica", emptyList(), 2)
-  )
+  private var people: MutableList<Person>
+
+  init {
+    val tom = Person(
+      1,
+      "Tom"
+    )
+    val jessica = Person(
+      2,
+      "Jessica",
+      petIds = listOf(1,2)
+    )
+
+    people = mutableListOf(
+      tom,
+      jessica
+    )
+    addFriendConnection(tom.id, jessica.id)
+  }
 
   fun findById(id: Int) =
     people.find {
