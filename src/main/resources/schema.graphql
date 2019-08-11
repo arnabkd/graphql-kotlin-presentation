@@ -1,0 +1,62 @@
+input AddFriendsInput {
+  first: ID!
+  second: ID!
+}
+
+type Cat implements Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+  beLazy: String!
+}
+
+type Dog implements Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+  barkLoudly: String!
+}
+
+interface Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+}
+
+type Person {
+  id: ID!
+  name: String!
+  description: String!
+  dateOfBirth: Date!
+  friends: [Person!]!
+  pets: [Pet!]!
+}
+
+input PersonInput {
+  name: String!
+}
+
+union SearchResult = Dog | Cat | Person
+input SearchInput {
+  queryString: String!
+}
+
+type Query {
+  allPeople: [Person!]!
+  person(id: ID!): Person!
+  search(input: SearchInput!): [SearchResult!]!
+}
+
+type Mutation {
+  addPerson(input: PersonInput!): Person!
+  addFriends(input: AddFriendsInput!): Boolean!
+  generateData: [Person!]!
+  wipeData: WipeDataPayload!
+}
+
+type WipeDataPayload {
+  success: Boolean!
+}
+
+# RFC3339: full-date
+scalar Date
