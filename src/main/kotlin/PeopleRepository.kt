@@ -1,5 +1,11 @@
+import graphql.schema.DataFetchingEnvironment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.future.future
+import org.dataloader.BatchLoader
+import org.dataloader.DataLoader
 import java.lang.IllegalArgumentException
-import java.util.*
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 object PeopleRepository {
 
@@ -16,6 +22,8 @@ object PeopleRepository {
     fun all() =
             people.toList()
 
+    fun all(keys: List<Int>) = keys.map { findById(it) }
+
     fun addFriendConnection(id1: Int, id2: Int) {
         val p1 = findById(id1)
         val p2 = findById(id2)
@@ -28,13 +36,21 @@ object PeopleRepository {
         people.add(up2)
     }
 
-    fun changeName(id: Int, newName: String) = people.find {
-        it.id == id
-    }?.let {
-        val updated = it.copy(name = newName)
-        people.remove(it)
-        people.add(updated)
-        updated
-    }?: throw IllegalArgumentException("Not found")
+}
 
+object PersonBatchLoader : CoroutineScope {
+    override val coroutineContext: CoroutineContext
+        get() = EmptyCoroutineContext
+
+    operator fun invoke(personService: PeopleRepository) =
+            BatchLoader<Int, Person> { keys ->
+                future(coroutineContext) {
+                    personService.all(keys)
+                            .let { result ->
+                                keys.map { result[it] }
+                            }
+                }
+            }
+
+    const val key = "Person"
 }
