@@ -5,16 +5,16 @@ import ktor.graphql.graphQL
 
 fun Application.main() {
 
-    routing {
-        //intercept(ApplicationCallPipeline.Call) {
-        //    authenticate()
-        //}
+  routing {
+    //intercept(ApplicationCallPipeline.Call) {
+    //    authenticate()
+    //}
 
-        graphQL("/graphql", schema) {
-            config {
-                graphiql = true
-                formatError = formatErrorGraphQLError
-            }
-        }
+    graphQL("/graphql", schema) {
+      config {
+        graphiql = true
+        formatError = formatErrorGraphQLError
+      }
     }
+  }
 }

@@ -1,14 +1,18 @@
+type Interest {
+
+}
+
 type Person {
-    id: ID!
-    name: String!
-    friends: [Person!]!
+  id: ID!
+  name: String!
+  friends: [Person!]!
 }
 
 type Query {
-    allPeople: [Person!]!
-    findById(id: ID!): Person!
+  allPeople: [Person!]!
+  findById(id: ID!): Person!
 }
 
 type Mutation {
-    addFriend(firstFriendId: ID!, secondFriendId: ID!): Boolean!
+  addFriend(firstFriendId: ID!, secondFriendId: ID!): Boolean!
 }
