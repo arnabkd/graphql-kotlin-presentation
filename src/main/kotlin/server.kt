@@ -6,10 +6,6 @@ import ktor.graphql.graphQL
 fun Application.main() {
 
   routing {
-    //intercept(ApplicationCallPipeline.Call) {
-    //    authenticate()
-    //}
-
     graphQL("/graphql", schema) {
       config {
         graphiql = true

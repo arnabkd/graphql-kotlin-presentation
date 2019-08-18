@@ -25,6 +25,10 @@ type Person {
   pets: [Pet!]!
 }
 
+input PersonInput {
+  name: String!
+}
+
 type Query {
   allPeople: [Person!]!
   findById(id: ID!): Person!
@@ -32,5 +36,6 @@ type Query {
 
 type Mutation {
   addFriend(firstFriendId: ID!, secondFriendId: ID!): Boolean!
+  addPerson(input: PersonInput!): Person!
   addPet(personId: ID!, petId: ID!): Boolean!
 }

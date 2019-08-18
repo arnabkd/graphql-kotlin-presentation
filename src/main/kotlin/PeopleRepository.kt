@@ -20,6 +20,8 @@ object PeopleRepository {
     addFriendConnection(tom.id, jessica.id)
   }
 
+  fun clearPersonList() = people.clear()
+
   fun findById(id: Int) =
     people.find {
       it.id == id
@@ -42,4 +44,13 @@ object PeopleRepository {
     people.add(up2)
   }
 
+  fun addPerson(person: Person) = people.add(person).run {
+    person
+  }
+
+  fun getNextId() = people.maxBy {
+    it.id
+  }?.let {
+    it.id + 1
+  }?: 1
 }
