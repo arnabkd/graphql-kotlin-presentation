@@ -14,7 +14,12 @@ object PersonRepository {
     people.add(Kim)
   }
 
-  fun addPerson(person: Person) = people.add(person)
+  fun addPerson(name: String): Person {
+    val id = (people.maxBy { it.id }?.id ?: 0) + 1
+    val person = Person(id, name, emptyList())
+    people.add(person)
+    return person
+  }
   fun allPeople() = people.toList()
   fun findById(id: Int) = people.first { it.id == id }
 }

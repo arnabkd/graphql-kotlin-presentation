@@ -25,11 +25,15 @@ type Person {
   pets: [Pet!]!
 }
 
+input PersonInput {
+  name: String!
+}
+
 type Query {
   allPeople: [Person!]!
   person(id: ID!): Person!
 }
 
 type Mutation {
-
+  addPerson(input: PersonInput!): Person!
 }

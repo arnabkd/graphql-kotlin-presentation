@@ -31,4 +31,6 @@ class QueryResolver : GraphQLQueryResolver {
 }
 
 @Suppress("unused") // GraphQL by reflection
-class MutationResolver : GraphQLMutationResolver
+class MutationResolver : GraphQLMutationResolver {
+  fun addPerson(input: PersonInput): Person = PersonRepository.addPerson(input.name)
+}
