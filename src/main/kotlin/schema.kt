@@ -19,7 +19,9 @@ fun createExecutableSchema()= SchemaParser
   .makeExecutableSchema()
 
 @Suppress("unused") // GraphQL by reflection
-class QueryResolver : GraphQLQueryResolver
+class QueryResolver : GraphQLQueryResolver {
+  fun person(id: Int) = PersonRepository.findById(id)
+}
 
 @Suppress("unused") // GraphQL by reflection
 class MutationResolver : GraphQLMutationResolver
