@@ -1,41 +1,7 @@
-interface Pet {
-  id: ID!
-  name: String!
-  makeSound: String!
-}
-
-type Dog implements Pet {
-  id: ID!
-  name: String!
-  makeSound: String!
-  wagTail: String!
-}
-
-type Cat implements Pet {
-  id: ID!
-  name: String!
-  makeSound: String!
-  purr: String!
-}
-
-type Person {
-  id: ID!
-  name: String!
-  friends: [Person!]!
-  pets: [Pet!]!
-}
-
-input PersonInput {
-  name: String!
-}
-
 type Query {
-  allPeople: [Person!]!
-  findById(id: ID!): Person!
+
 }
 
 type Mutation {
-  addFriend(firstFriendId: ID!, secondFriendId: ID!): Boolean!
-  addPerson(input: PersonInput!): Person!
-  addPet(personId: ID!, petId: ID!): Boolean!
+
 }
