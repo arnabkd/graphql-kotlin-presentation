@@ -14,6 +14,12 @@ fun createExecutableSchema()= SchemaParser
       Charsets.UTF_8
     )
   )
+  .dictionary( // Currently required for sealed classes
+    mapOf(
+    "Cat" to Cat::class.java,
+    "Dog" to Dog::class.java
+    )
+  )
   .resolvers(QueryResolver(), MutationResolver())
   .build()
   .makeExecutableSchema()
@@ -21,6 +27,7 @@ fun createExecutableSchema()= SchemaParser
 @Suppress("unused") // GraphQL by reflection
 class QueryResolver : GraphQLQueryResolver {
   fun person(id: Int) = PersonRepository.findById(id)
+  fun allPeople() = PersonRepository.allPeople()
 }
 
 @Suppress("unused") // GraphQL by reflection

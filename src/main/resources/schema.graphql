@@ -1,10 +1,32 @@
+type Cat implements Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+  beLazy: String!
+}
+
+type Dog implements Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+  barkLoudly: String!
+}
+
+interface Pet {
+  id: ID!
+  name: String!
+  makeSound: String!
+}
+
 type Person {
   id: ID!
   name: String!
   friends: [Person!]!
+  pets: [Pet!]!
 }
 
 type Query {
+  allPeople: [Person!]!
   person(id: ID!): Person!
 }
 
