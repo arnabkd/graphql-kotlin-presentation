@@ -29,9 +29,15 @@ input PersonInput {
   name: String!
 }
 
+union SearchResult = Dog | Cat | Person
+input SearchInput {
+  queryString: String!
+}
+
 type Query {
   allPeople: [Person!]!
   person(id: ID!): Person!
+  search(input: SearchInput!): [SearchResult!]!
 }
 
 type Mutation {

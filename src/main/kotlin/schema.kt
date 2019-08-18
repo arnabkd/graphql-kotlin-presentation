@@ -28,6 +28,10 @@ fun createExecutableSchema()= SchemaParser
 class QueryResolver : GraphQLQueryResolver {
   fun person(id: Int) = PersonRepository.findById(id)
   fun allPeople() = PersonRepository.allPeople()
+  fun search(input: SearchInput): List<Any> =
+    (PersonRepository.allPeople() + PetsRepository.allPets()).filter {
+      it.matches(input.queryString)
+    }
 }
 
 @Suppress("unused") // GraphQL by reflection

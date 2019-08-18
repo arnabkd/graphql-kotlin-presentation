@@ -9,4 +9,5 @@ object PetsRepository {
   }
 
   fun findById(id: Int) = pets.first { it.id == id }
+  fun allPets() = pets.toList()
 }
