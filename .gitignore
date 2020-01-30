@@ -59,4 +59,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 
+# Intellij files
+*.iml
+
 # End of https://www.gitignore.io/api/java,gradle,kotlin
