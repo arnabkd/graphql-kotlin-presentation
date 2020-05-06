@@ -17,3 +17,5 @@ Although this example uses Ktor, any Kotlin server may be used.
 ## Schema first vs code first
 This example is schema first, but there are also possibilities to write code-first resolvers 
 (aka schema is defined by the code). Examples of code-first can be found [here](https://github.com/ExpediaDotCom/graphql-kotlin)
+
+
