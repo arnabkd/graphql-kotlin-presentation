@@ -45,7 +45,7 @@ dependencies {
     testCompile "io.ktor:ktor-server-test-host:$ktor_version"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 
-    testCompile 'org.jetbrains.spek:spek-api:1.1.5'
+    testCompile 'org.jetbrains.spek:spek-api:1.2.1'
     testRuntime 'org.jetbrains.spek:spek-junit-platform-engine:1.1.5'
     // for JVM:
     testImplementation 'org.amshove.kluent:kluent:{kotlin_version}'
