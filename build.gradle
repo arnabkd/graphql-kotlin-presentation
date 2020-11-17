@@ -41,7 +41,7 @@ dependencies {
     compile group: 'com.graphql-java', name: 'graphql-java', version: '2020-11-16T00-02-27-3dfeae3'
 
 
-    testCompile "junit:junit:4.13"
+    testCompile "junit:junit:4.13.1"
     testCompile "io.ktor:ktor-server-test-host:$ktor_version"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 
