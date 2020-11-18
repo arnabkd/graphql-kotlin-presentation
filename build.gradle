@@ -66,6 +66,7 @@ junitPlatform {
         }
     }
 }
+task stage(dependsOn: ['build', 'clean'])
 
 application {
     mainClassName = 'Application'
