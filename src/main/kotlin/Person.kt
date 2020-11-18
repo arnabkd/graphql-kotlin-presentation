@@ -10,6 +10,8 @@ data class Person(
   private val friendIds = mutableListOf<Int>()
   override fun matches(queryString: String) = name.contains(queryString)
 
+  // TODO: left to the reader, figure out a way to use BatchLoaders.
+  // See: https://www.graphql-java.com/documentation/v12/batching/
   fun friends(env: DataFetchingEnvironment) =
     env
       .getPersonRepository()

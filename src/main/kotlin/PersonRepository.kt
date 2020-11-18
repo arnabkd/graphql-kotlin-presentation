@@ -26,7 +26,13 @@ object PersonRepository {
     first.addFriend(second) && second.addFriend(first)
 
   fun allPeople() = people.toList()
+
+  // Note: this can be expensive, so look at the Person.kt class for a hint on how to batch calls
   fun findById(id: Int) = people.first { it.id == id }
+    /*.also {
+    println("this is an expensive call to find the person with id $id")
+  }*/
+  
   fun findByIds(ids: List<Int>) = ids.map { findById(it) }
 }
 
