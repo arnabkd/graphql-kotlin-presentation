@@ -1,3 +1,8 @@
+input AddFriendsInput {
+  first: ID!
+  second: ID!
+}
+
 type Cat implements Pet {
   id: ID!
   name: String!
@@ -42,4 +47,5 @@ type Query {
 
 type Mutation {
   addPerson(input: PersonInput!): Person!
+  addFriends(input: AddFriendsInput!): Boolean!
 }

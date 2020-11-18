@@ -37,4 +37,10 @@ class QueryResolver : GraphQLQueryResolver {
 @Suppress("unused") // GraphQL by reflection
 class MutationResolver : GraphQLMutationResolver {
   fun addPerson(input: PersonInput): Person = PersonRepository.addPerson(input.name)
+  fun addFriends(input: AddFriendsInput): Boolean {
+    val first = PersonRepository.findById(input.first)
+    val second = PersonRepository.findById(input.second)
+
+    return PersonRepository.addFriends(first, second)
+  }
 }
