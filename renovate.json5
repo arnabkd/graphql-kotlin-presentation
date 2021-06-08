@@ -1,0 +1,25 @@
+{
+  "branchPrefix": "renovate-",
+  "dependencyDashboard": true,
+  "extends": [
+    "config:base"
+  ],
+  // Ensure that major is never automerged
+  "major": {
+    "automerge": false
+  },
+  "packageRules": [
+    {
+      "description": "Avoid updates such as from 14.1 to 2020-06-07T01-00-15-98bb45a",
+      "packagePatterns": ["^com\\.graphql-java:"],
+      "versioning": "semver"
+    }
+  ],
+  // Default 0, but use this to prevent renovate from spamming PRs
+  "prConcurrentLimit": 0,
+  "schedule": [
+    "every weekday"
+  ],
+  "stabilityDays": 10,
+  "timezone": "Europe/Oslo"
+}
