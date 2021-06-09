@@ -19,7 +19,7 @@ object PersonRepository {
   }
 
   fun addPerson(name: String): Person {
-    val id = (people.maxBy { it.id }?.id ?: 0) + 1
+    val id = (people.maxByOrNull { it.id }?.id ?: 0) + 1
     val person = Person(id, name, emptyList())
     people.add(person)
     return person

@@ -1,16 +1,19 @@
 import io.ktor.application.Application
 import io.ktor.routing.routing
-import ktor.graphql.config
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
+import ktor.graphql.Config
 import ktor.graphql.graphQL
 
 fun Application.main() {
 
-  routing {
-    graphQL("/graphql", schema) {
-      config {
-        graphiql = true
-        formatError = formatErrorGraphQLError
+  val server = embeddedServer(Netty, port = 8080) {
+    routing {
+      graphQL("/graphql", schema) { request ->
+        Config(showExplorer = true)
       }
     }
   }
+
+  server.start(wait = true)
 }

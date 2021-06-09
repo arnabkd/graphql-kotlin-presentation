@@ -1,6 +1,6 @@
-import com.coxautodev.graphql.tools.GraphQLMutationResolver
-import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.coxautodev.graphql.tools.SchemaParser
+import graphql.kickstart.tools.GraphQLMutationResolver
+import graphql.kickstart.tools.GraphQLQueryResolver
+import graphql.kickstart.tools.SchemaParser
 import com.google.common.io.Resources
 
 val schema = createExecutableSchema()
