@@ -8,10 +8,12 @@ object PersonRepository {
     val sherlock = PetsRepository.findById(2)
 
     val jessica = Person(3, "Jessica", emptyList())
-    val kim = Person(2, "Kim", listOf(sherlock))
-    val arnab = Person(1, "Arnab", listOf(sherlock, rocket))
+    val kim = Person(2, "Kim", listOf(sherlock.id))
+    val arnab = Person(1, "Arnab", listOf(sherlock.id, rocket.id))
 
     addFriends(jessica, arnab)
+    addFriends(kim, arnab)
+    addFriends(kim, jessica)
 
     people.add(arnab)
     people.add(jessica)
@@ -31,11 +33,8 @@ object PersonRepository {
 
   // Note: this can be expensive, so look at the Person.kt class for a hint on how to batch calls
   fun findById(id: Int) = people.first { it.id == id }
-    /*.also {
-    println("this is an expensive call to find the person with id $id")
-  }*/
 
-  fun findByIds(ids: List<Int>) = ids.map { findById(it) }
+  fun findByIds(ids: List<Int>) = people.filter { it.id in ids }.also {
+    println("An expensive call to find the people with id $ids")
+  }
 }
-
-fun DataFetchingEnvironment.getPersonRepository(): PersonRepository = PersonRepository
