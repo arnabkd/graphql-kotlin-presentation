@@ -34,7 +34,7 @@ dependencies {
   implementation "com.google.code.gson:gson:2.8.7"
   implementation "com.graphql-java:graphql-java:11.0"
   implementation 'com.google.guava:guava:30.1.1-jre'
-
+  implementation 'com.github.javafaker:javafaker:1.0.2'
   implementation "io.ktor:ktor-server-netty:1.6.0"
   implementation 'com.graphql-java:java-dataloader:2021-03-30T02-56-19-5805475'
 }
