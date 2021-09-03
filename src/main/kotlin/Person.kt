@@ -28,5 +28,4 @@ data class Person(
   fun addFriend(other: Person) =
     if (friendIds.contains(other.id)) true
     else friendIds.add(other.id)
-
 }

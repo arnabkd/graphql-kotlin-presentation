@@ -1,8 +1,8 @@
 import com.github.javafaker.Faker
+import com.google.common.io.Resources
 import graphql.kickstart.tools.GraphQLMutationResolver
 import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.SchemaParser
-import com.google.common.io.Resources
 import graphql.scalars.ExtendedScalars
 import kotlin.random.Random
 

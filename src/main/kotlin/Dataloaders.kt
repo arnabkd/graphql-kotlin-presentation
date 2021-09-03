@@ -1,15 +1,16 @@
 import graphql.schema.DataFetchingEnvironment
-import kotlinx.coroutines.future.future
-import org.dataloader.DataLoader
-import org.dataloader.DataLoaderRegistry
-import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.future.future
 import kotlinx.coroutines.slf4j.MDCContext
 import org.dataloader.BatchLoader
+import org.dataloader.DataLoader
+import org.dataloader.DataLoaderFactory
+import org.dataloader.DataLoaderRegistry
+import kotlin.coroutines.CoroutineContext
 
 fun buildRegistry() = DataLoaderRegistry().apply {
-  register(PetBatchLoader.key, DataLoader(PetBatchLoader()))
-  register(PersonBatchLoader.key, DataLoader(PersonBatchLoader()))
+  register(PetBatchLoader.key, DataLoaderFactory.newDataLoader(PetBatchLoader()))
+  register(PersonBatchLoader.key, DataLoaderFactory.newDataLoader(PersonBatchLoader()))
 }
 
 object PersonBatchLoader : CoroutineScope {
@@ -56,4 +57,3 @@ fun DataFetchingEnvironment.getPersonDataLoader(): DataLoader<Int, Person> =
 fun DataFetchingEnvironment.getPetDataLoader(): DataLoader<Int, Pet> =
   dataLoaderRegistry
     .getDataLoader(PetBatchLoader.key)
-
