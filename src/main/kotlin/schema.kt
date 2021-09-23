@@ -24,7 +24,10 @@ fun createExecutableSchema() = SchemaParser
     )
   )
   .scalars(ExtendedScalars.Date)
-  .resolvers(QueryResolver(), MutationResolver())
+  .resolvers(
+    QueryResolver(),
+    MutationResolver().also { it.generateData() } // temporary
+  )
   .build()
   .makeExecutableSchema()
 
