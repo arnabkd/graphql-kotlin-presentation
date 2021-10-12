@@ -19,6 +19,7 @@ object PersonRepository {
   fun addFriends(first: Person, second: Person): Boolean =
     first.addFriend(second) && second.addFriend(first)
 
+  fun allIds() = people.map { it.id }
   fun allPeople() = people.toList().also {
     println("Expensive call to get all people")
   }

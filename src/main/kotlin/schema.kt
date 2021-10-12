@@ -4,6 +4,7 @@ import graphql.kickstart.tools.GraphQLMutationResolver
 import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.SchemaParser
 import graphql.scalars.ExtendedScalars
+import graphql.schema.DataFetchingEnvironment
 import kotlin.random.Random
 
 val schema = createExecutableSchema()
@@ -31,7 +32,11 @@ fun createExecutableSchema() = SchemaParser
 @Suppress("unused") // GraphQL by reflection
 class QueryResolver : GraphQLQueryResolver {
   fun person(id: Int) = PersonRepository.findById(id)
-  fun allPeople() = PersonRepository.allPeople()
+
+  fun allPeople(env: DataFetchingEnvironment) = env
+    .getPersonDataLoader()
+    .loadMany(PersonRepository.allIds())
+
   fun search(input: SearchInput): List<Any> =
     (PersonRepository.allPeople() + PetsRepository.allPets()).filter {
       it.matches(input.queryString)

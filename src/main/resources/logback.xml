@@ -1,0 +1,27 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
+       the key "bySecond" into the logger context. This value will be
+       available to all subsequent configuration elements. -->
+  <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <!-- use the previously created timestamp to create a uniquely
+         named log file -->
+    <file>${byDay}-graphql-kotlin-app.log</file>
+    <encoder>
+      <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <root level="DEBUG">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="FILE" />
+  </root>
+  <logger name="org.eclipse.jetty" level="INFO"/>
+  <logger name="io.netty" level="INFO"/>
+</configuration>
