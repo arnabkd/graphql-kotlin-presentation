@@ -40,7 +40,7 @@ dependencies {
   implementation "io.ktor:ktor-server-netty:1.6.3"
   implementation 'com.graphql-java:java-dataloader:3.1.0'
   implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.5.2'
-  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.5.2'
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.9.0'
 }
 
 compileKotlin {
